@@ -1,0 +1,1500 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>4X SHOP</title>
+
+<style>
+*{
+  box-sizing:border-box;
+  margin:0;
+  padding:0;
+  font-family:Arial,sans-serif;
+}
+
+body{
+  background:#ffffff;
+  color:#222;
+}
+
+header{
+  background:linear-gradient(135deg,#6d28d9,#9333ea);
+  color:white;
+  padding:18px 15px;
+  position:sticky;
+  top:0;
+  z-index:100;
+  box-shadow:0 3px 15px #0002;
+}
+
+.header{
+  max-width:1100px;
+  margin:auto;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+}
+
+.logo{
+  font-size:25px;
+  font-weight:900;
+}
+
+.admin-btn{
+  border:1px solid #ffffff80;
+  background:#ffffff20;
+  color:white;
+  padding:9px 13px;
+  border-radius:10px;
+  cursor:pointer;
+}
+
+.hero{
+  background:linear-gradient(135deg,#f5f3ff,#ffffff);
+  text-align:center;
+  padding:55px 15px;
+}
+
+.hero h1{
+  color:#6d28d9;
+  font-size:40px;
+  margin-bottom:10px;
+}
+
+.hero p{
+  color:#666;
+  font-size:17px;
+}
+
+.hero .start{
+  display:inline-block;
+  margin-top:20px;
+  background:#7c3aed;
+  color:white;
+  padding:13px 25px;
+  border-radius:12px;
+  text-decoration:none;
+  font-weight:bold;
+}
+
+.container{
+  max-width:1100px;
+  margin:auto;
+  padding:30px 15px;
+}
+
+.title{
+  text-align:center;
+  color:#6d28d9;
+  margin-bottom:25px;
+  font-size:28px;
+}
+
+.categories{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(145px,1fr));
+  gap:15px;
+}
+
+.category{
+  background:white;
+  border:2px solid #eee;
+  border-radius:18px;
+  padding:22px 10px;
+  text-align:center;
+  cursor:pointer;
+  transition:.2s;
+  box-shadow:0 5px 20px #0000000d;
+}
+
+.category:hover{
+  transform:translateY(-4px);
+  border-color:#8b5cf6;
+}
+
+.category .icon{
+  font-size:35px;
+  margin-bottom:8px;
+}
+
+.category h3{
+  color:#4c1d95;
+  font-size:16px;
+}
+
+.gallery-head{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:10px;
+  margin-bottom:20px;
+}
+
+.back-btn{
+  background:#eee;
+  border:0;
+  padding:10px 15px;
+  border-radius:10px;
+  cursor:pointer;
+}
+
+.products{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(210px,1fr));
+  gap:18px;
+}
+
+.card{
+  background:white;
+  border:1px solid #eee;
+  border-radius:17px;
+  overflow:hidden;
+  box-shadow:0 5px 20px #00000012;
+}
+
+.card img{
+  width:100%;
+  height:190px;
+  object-fit:cover;
+  background:#f3f3f3;
+}
+
+.card-body{
+  padding:15px;
+}
+
+.card h3{
+  color:#4c1d95;
+  margin-bottom:8px;
+}
+
+.price{
+  color:#7c3aed;
+  font-size:21px;
+  font-weight:bold;
+  margin-bottom:12px;
+}
+
+.order-btn{
+  width:100%;
+  border:0;
+  background:#7c3aed;
+  color:white;
+  padding:12px;
+  border-radius:10px;
+  font-weight:bold;
+  cursor:pointer;
+}
+
+.help{
+  background:#f5f3ff;
+  margin-top:30px;
+  padding:30px 15px;
+  text-align:center;
+}
+
+.help h2{
+  color:#6d28d9;
+  margin-bottom:10px;
+}
+
+.whatsapp{
+  display:inline-block;
+  margin-top:15px;
+  background:#25D366;
+  color:white;
+  padding:13px 22px;
+  border-radius:12px;
+  text-decoration:none;
+  font-weight:bold;
+}
+
+footer{
+  background:#18111f;
+  color:white;
+  text-align:center;
+  padding:25px 10px;
+  margin-top:30px;
+}
+
+/* MODAL */
+
+.modal{
+  display:none;
+  position:fixed;
+  inset:0;
+  background:#0008;
+  z-index:500;
+  overflow:auto;
+  padding:20px;
+}
+
+.modal-box{
+  background:white;
+  max-width:520px;
+  margin:30px auto;
+  border-radius:18px;
+  padding:22px;
+  position:relative;
+}
+
+.close{
+  position:absolute;
+  right:15px;
+  top:12px;
+  border:0;
+  background:#eee;
+  width:35px;
+  height:35px;
+  border-radius:50%;
+  font-size:20px;
+  cursor:pointer;
+}
+
+.modal-box h2{
+  color:#6d28d9;
+  margin-bottom:18px;
+  padding-right:35px;
+}
+
+.field{
+  margin-bottom:13px;
+}
+
+.field label{
+  display:block;
+  font-weight:bold;
+  margin-bottom:6px;
+}
+
+.field input,
+.field textarea,
+.field select{
+  width:100%;
+  padding:12px;
+  border:1px solid #ddd;
+  border-radius:10px;
+  outline:none;
+}
+
+.field textarea{
+  min-height:90px;
+  resize:vertical;
+}
+
+.submit{
+  width:100%;
+  padding:13px;
+  border:0;
+  background:#7c3aed;
+  color:white;
+  border-radius:11px;
+  font-weight:bold;
+  cursor:pointer;
+}
+
+/* ADMIN */
+
+.admin-list{
+  max-height:420px;
+  overflow:auto;
+  margin-top:15px;
+}
+
+.admin-item{
+  border:1px solid #ddd;
+  padding:12px;
+  border-radius:12px;
+  margin-bottom:10px;
+}
+
+.admin-item input,
+.admin-item select{
+  width:100%;
+  padding:9px;
+  margin:4px 0;
+  border:1px solid #ddd;
+  border-radius:8px;
+}
+
+.admin-actions{
+  display:flex;
+  gap:7px;
+  margin-top:7px;
+}
+
+.save-btn{
+  background:#16a34a;
+  color:white;
+  border:0;
+  padding:9px 12px;
+  border-radius:8px;
+}
+
+.delete-btn{
+  background:#dc2626;
+  color:white;
+  border:0;
+  padding:9px 12px;
+  border-radius:8px;
+}
+
+.add-box{
+  background:#f5f3ff;
+  padding:15px;
+  border-radius:12px;
+  margin-top:15px;
+}
+
+.add-box input,
+.add-box select{
+  width:100%;
+  padding:10px;
+  margin:5px 0;
+  border:1px solid #ddd;
+  border-radius:8px;
+}
+
+.add-btn{
+  width:100%;
+  background:#7c3aed;
+  color:white;
+  border:0;
+  padding:11px;
+  border-radius:9px;
+  margin-top:7px;
+}
+
+.hidden{
+  display:none!important;
+}
+
+.note{
+  background:#fff7ed;
+  border:1px solid #fed7aa;
+  padding:10px;
+  border-radius:9px;
+  margin-bottom:12px;
+  font-size:13px;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <div class="header">
+    <div class="logo">💜 4X SHOP</div>
+    <button class="admin-btn" onclick="openAdmin()">⚙️ Admin</button>
+  </div>
+</header>
+
+<section class="hero" id="home">
+  <h1>4X SHOP</h1>
+  <p>Professional Logo & YouTube Thumbnail Design</p>
+  <a href="#categories" class="start">Explore Designs</a>
+</section>
+
+<section class="container" id="categories">
+  <h2 class="title">Choose Your Category</h2>
+
+  <div class="categories">
+
+    <div class="category" onclick="openCategory('tiktok')">
+      <div class="icon">🎵</div>
+      <h3>TikTok</h3>
+    </div>
+
+    <div class="category" onclick="openCategory('youtube')">
+      <div class="icon">▶️</div>
+      <h3>YouTube</h3>
+    </div>
+
+    <div class="category" onclick="openCategory('instagram')">
+      <div class="icon">📸</div>
+      <h3>Instagram</h3>
+    </div>
+
+    <div class="category" onclick="openCategory('facebook')">
+      <div class="icon">📘</div>
+      <h3>Facebook</h3>
+    </div>
+
+    <div class="category" onclick="openCategory('gaming')">
+      <div class="icon">🎮</div>
+      <h3>Gaming</h3>
+    </div>
+
+    <div class="category" onclick="openCategory('esports')">
+      <div class="icon">🏆</div>
+      <h3>Esports</h3>
+    </div>
+
+    <div class="category" onclick="openCategory('business')">
+      <div class="icon">💼</div>
+      <h3>Business</h3>
+    </div>
+
+    <div class="category" onclick="openCategory('thumbnail')">
+      <div class="icon">🖼️</div>
+      <h3>YouTube Thumbnail</h3>
+    </div>
+
+    <div class="category" onclick="openCategory('custom')">
+      <div class="icon">✨</div>
+      <h3>Custom Design</h3>
+    </div>
+
+  </div>
+</section>
+
+<section class="container hidden" id="gallery">
+
+  <div class="gallery-head">
+    <button class="back-btn" onclick="goHome()">← Back</button>
+    <h2 class="title" id="galleryTitle">Designs</h2>
+  </div>
+
+  <div class="products" id="products"></div>
+
+</section>
+
+<section class="help">
+  <h2>Need Help? 💬</h2>
+  <p>Logo বা Thumbnail সম্পর্কে জানতে WhatsApp-এ যোগাযোগ করুন।</p>
+
+  <a class="whatsapp"
+     href="https://wa.me/8801722049804"
+     target="_blank">
+     💬 WhatsApp: 01722049804
+  </a>
+</section>
+
+<footer>
+  <p>© 2026 4X SHOP</p>
+  <p>Professional Logo Design Service</p>
+</footer>
+
+
+<!-- ORDER MODAL -->
+
+<div class="modal" id="orderModal">
+
+  <div class="modal-box">
+
+    <button class="close" onclick="closeOrder()">×</button>
+
+    <h2>🛍️ Order Now</h2>
+
+    <div class="note">
+      নির্বাচিত ডিজাইন:
+      <b id="selectedProductName"></b>
+      <br>
+      দাম:
+      <b id="selectedProductPrice"></b>
+    </div>
+
+    <div class="field">
+      <label>আপনার নাম *</label>
+      <input id="customerName" placeholder="আপনার নাম">
+    </div>
+
+    <div class="field">
+      <label>WhatsApp নম্বর *</label>
+      <input id="phone" placeholder="01XXXXXXXXX">
+    </div>
+
+    <div class="field">
+      <label>লোগোতে যে নাম দিতে চান *</label>
+      <input id="logoName" placeholder="যেমন: 4X GAMING">
+    </div>
+
+    <div class="field">
+      <label>কী ধরনের লোগো/ডিজাইন চান? *</label>
+      <textarea id="logoDetails"
+        placeholder="যেমন: Purple gaming style, aggressive design"></textarea>
+    </div>
+
+    <div class="field">
+      <label>অতিরিক্ত তথ্য</label>
+      <textarea id="extraDetails"
+        placeholder="অন্য কোনো নির্দেশনা থাকলে লিখুন"></textarea>
+    </div>
+
+    <button class="submit" onclick="sendOrder()">
+      📩 ORDER SUBMIT
+    </button>
+
+  </div>
+
+</div>
+
+
+<!-- ADMIN MODAL -->
+
+<div class="modal" id="adminModal">
+
+  <div class="modal-box">
+
+    <button class="close" onclick="closeAdmin()">×</button>
+
+    <h2>⚙️ 4X SHOP Admin</h2>
+
+    <div id="adminLoginBox">
+
+      <div class="field">
+        <label>Admin Password</label>
+        <input id="adminPassword"
+               type="password"
+               placeholder="Password">
+      </div>
+
+      <button class="submit" onclick="adminLogin()">
+        Login
+      </button>
+
+    </div>
+
+    <div id="adminPanel" class="hidden">
+
+      <div class="note">
+        এখান থেকে Design-এর নাম, দাম, category এবং image পরিবর্তন করতে পারবে।
+      </div>
+
+      <div class="admin-list" id="adminList"></div>
+
+      <div class="add-box">
+
+        <h3>➕ Add New Design</h3>
+
+        <input id="newName" placeholder="Design Name">
+
+        <input id="newPrice"
+               type="number"
+               placeholder="Price">
+
+        <input id="newImage"
+               placeholder="Image URL">
+
+        <select id="newCategory">
+          <option value="tiktok">TikTok</option>
+          <option value="youtube">YouTube</option>
+          <option value="instagram">Instagram</option>
+          <option value="facebook">Facebook</option>
+          <option value="gaming">Gaming</option>
+          <option value="esports">Esports</option>
+          <option value="business">Business</option>
+          <option value="thumbnail">YouTube Thumbnail</option>
+          <option value="custom">Custom Design</option>
+        </select>
+
+        <button class="add-btn" onclick="addDesign()">
+          Add Design
+        </button>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</div>
+
+
+<script>
+
+/* =====================================================
+   4X SHOP SETTINGS
+===================================================== */
+
+const API_URL =
+"https://script.google.com/macros/s/AKfycbzVRU77cDdHLnJZYrtSZz9qNJbiVGP0WJXRLR1XY32yLIxCBXeBn4SE7Mv9cr2rlIUH/exec";
+
+const ADMIN_PASSWORD = "4XADMIN123";
+
+const SELLER_WHATSAPP = "8801722049804";
+
+
+/* =====================================================
+   CATEGORY NAMES
+===================================================== */
+
+const categoryNames = {
+
+  tiktok:"TikTok",
+
+  youtube:"YouTube",
+
+  instagram:"Instagram",
+
+  facebook:"Facebook",
+
+  gaming:"Gaming",
+
+  esports:"Esports",
+
+  business:"Business",
+
+  thumbnail:"YouTube Thumbnail",
+
+  custom:"Custom Design"
+
+};
+
+
+/* =====================================================
+   DEFAULT PRODUCTS
+===================================================== */
+
+const defaultProducts = [
+
+  {
+    id:1,
+    name:"TikTok Gaming Logo",
+    price:10,
+    image:"https://placehold.co/600x400/7c3aed/ffffff?text=TikTok+Logo",
+    category:"tiktok"
+  },
+
+  {
+    id:2,
+    name:"YouTube Gaming Logo",
+    price:10,
+    image:"https://placehold.co/600x400/7c3aed/ffffff?text=YouTube+Logo",
+    category:"youtube"
+  },
+
+  {
+    id:3,
+    name:"Instagram Logo",
+    price:10,
+    image:"https://placehold.co/600x400/7c3aed/ffffff?text=Instagram+Logo",
+    category:"instagram"
+  },
+
+  {
+    id:4,
+    name:"Facebook Logo",
+    price:10,
+    image:"https://placehold.co/600x400/7c3aed/ffffff?text=Facebook+Logo",
+    category:"facebook"
+  },
+
+  {
+    id:5,
+    name:"Free Fire Logo",
+    price:10,
+    image:"https://placehold.co/600x400/7c3aed/ffffff?text=Free+Fire",
+    category:"gaming"
+  },
+
+  {
+    id:6,
+    name:"Gaming Logo",
+    price:10,
+    image:"https://placehold.co/600x400/7c3aed/ffffff?text=Gaming+Logo",
+    category:"gaming"
+  },
+
+  {
+    id:7,
+    name:"Esports Logo",
+    price:10,
+    image:"https://placehold.co/600x400/7c3aed/ffffff?text=Esports",
+    category:"esports"
+  },
+
+  {
+    id:8,
+    name:"Business Logo",
+    price:10,
+    image:"https://placehold.co/600x400/7c3aed/ffffff?text=Business",
+    category:"business"
+  },
+
+  {
+    id:9,
+    name:"Free Fire Thumbnail",
+    price:10,
+    image:"https://placehold.co/600x400/7c3aed/ffffff?text=FF+Thumbnail",
+    category:"thumbnail"
+  },
+
+  {
+    id:10,
+    name:"YouTube Thumbnail",
+    price:10,
+    image:"https://placehold.co/600x400/7c3aed/ffffff?text=YouTube+Thumbnail",
+    category:"thumbnail"
+  },
+
+  {
+    id:11,
+    name:"Custom Gaming Design",
+    price:10,
+    image:"https://placehold.co/600x400/7c3aed/ffffff?text=Custom+Design",
+    category:"custom"
+  }
+
+];
+
+
+let products = [];
+
+let selectedProduct = null;
+
+
+/* =====================================================
+   LOAD PRODUCTS
+===================================================== */
+
+function loadProducts(){
+
+  const saved =
+    localStorage.getItem("4xProducts");
+
+  if(saved){
+
+    try{
+
+      products = JSON.parse(saved);
+
+    }catch(error){
+
+      products = defaultProducts;
+
+    }
+
+  }else{
+
+    products = defaultProducts;
+
+  }
+
+}
+
+
+/* =====================================================
+   SAVE PRODUCTS
+===================================================== */
+
+function saveProducts(){
+
+  localStorage.setItem(
+    "4xProducts",
+    JSON.stringify(products)
+  );
+
+}
+
+
+/* =====================================================
+   OPEN CATEGORY
+===================================================== */
+
+function openCategory(category){
+
+  document
+    .getElementById("categories")
+    .classList.add("hidden");
+
+  document
+    .getElementById("home")
+    .classList.add("hidden");
+
+  document
+    .getElementById("gallery")
+    .classList.remove("hidden");
+
+  document
+    .getElementById("galleryTitle")
+    .textContent =
+      categoryNames[category];
+
+  renderProducts(category);
+
+  window.scrollTo({
+    top:0,
+    behavior:"smooth"
+  });
+
+}
+
+
+/* =====================================================
+   RENDER PRODUCTS
+===================================================== */
+
+function renderProducts(category){
+
+  const box =
+    document.getElementById("products");
+
+  const list =
+    products.filter(
+      p => p.category === category
+    );
+
+  if(list.length === 0){
+
+    box.innerHTML =
+      "<p>এই category-তে এখন কোনো design নেই।</p>";
+
+    return;
+
+  }
+
+  box.innerHTML =
+    list.map(product => `
+
+      <div class="card">
+
+        <img
+          src="${escapeAttribute(product.image)}"
+          alt="${escapeAttribute(product.name)}"
+        >
+
+        <div class="card-body">
+
+          <h3>
+            ${escapeHTML(product.name)}
+          </h3>
+
+          <div class="price">
+            ৳${product.price}
+          </div>
+
+          <button
+            class="order-btn"
+            onclick="openOrder(${product.id})">
+
+            🛍️ ORDER NOW
+
+          </button>
+
+        </div>
+
+      </div>
+
+    `).join("");
+
+}
+
+
+/* =====================================================
+   HOME
+===================================================== */
+
+function goHome(){
+
+  document
+    .getElementById("gallery")
+    .classList.add("hidden");
+
+  document
+    .getElementById("home")
+    .classList.remove("hidden");
+
+  document
+    .getElementById("categories")
+    .classList.remove("hidden");
+
+  window.scrollTo({
+    top:0,
+    behavior:"smooth"
+  });
+
+}
+
+
+/* =====================================================
+   OPEN ORDER
+===================================================== */
+
+function openOrder(id){
+
+  selectedProduct =
+    products.find(
+      p => p.id === id
+    );
+
+  if(!selectedProduct) return;
+
+  document
+    .getElementById("selectedProductName")
+    .textContent =
+      selectedProduct.name;
+
+  document
+    .getElementById("selectedProductPrice")
+    .textContent =
+      "৳" + selectedProduct.price;
+
+  document
+    .getElementById("orderModal")
+    .style.display =
+      "block";
+
+}
+
+
+/* =====================================================
+   CLOSE ORDER
+===================================================== */
+
+function closeOrder(){
+
+  document
+    .getElementById("orderModal")
+    .style.display =
+      "none";
+
+}
+
+
+/* =====================================================
+   SEND ORDER
+===================================================== */
+
+function sendOrder(){
+
+  if(!selectedProduct){
+
+    alert("Design নির্বাচন করুন।");
+    return;
+
+  }
+
+  const customerName =
+    document
+      .getElementById("customerName")
+      .value.trim();
+
+  const phone =
+    document
+      .getElementById("phone")
+      .value.trim();
+
+  const logoName =
+    document
+      .getElementById("logoName")
+      .value.trim();
+
+  const logoDetails =
+    document
+      .getElementById("logoDetails")
+      .value.trim();
+
+  const extraDetails =
+    document
+      .getElementById("extraDetails")
+      .value.trim();
+
+
+  if(!customerName){
+
+    alert("আপনার নাম দিন।");
+    return;
+
+  }
+
+  if(!phone){
+
+    alert("WhatsApp নম্বর দিন।");
+    return;
+
+  }
+
+  if(!logoName){
+
+    alert("লোগোতে যে নাম দিতে চান সেটি লিখুন।");
+    return;
+
+  }
+
+  if(!logoDetails){
+
+    alert("কী ধরনের লোগো চান তা লিখুন।");
+    return;
+
+  }
+
+
+  /* -----------------------------------------------
+     DATA FOR OLD ALX GOOGLE APPS SCRIPT
+     ----------------------------------------------- */
+
+  const orderData = {
+
+    name:customerName,
+
+    phone:phone,
+
+    logo:
+      selectedProduct.name +
+      " | Logo Name: " +
+      logoName,
+
+    price:selectedProduct.price,
+
+    details:
+      "Category: " +
+      categoryNames[selectedProduct.category] +
+
+      "\nDesign: " +
+      selectedProduct.name +
+
+      "\nLogo Name: " +
+      logoName +
+
+      "\nLogo Type: " +
+      logoDetails +
+
+      "\nExtra Details: " +
+      (extraDetails || "None")
+
+  };
+
+
+  /* -----------------------------------------------
+     SEND TO GOOGLE APPS SCRIPT
+     ----------------------------------------------- */
+
+  fetch(API_URL,{
+
+    method:"POST",
+
+    mode:"no-cors",
+
+    headers:{
+      "Content-Type":
+        "text/plain;charset=utf-8"
+    },
+
+    body:
+      JSON.stringify(orderData)
+
+  }).catch(error => {
+
+    console.log(error);
+
+  });
+
+
+  /* -----------------------------------------------
+     WHATSAPP MESSAGE
+     ----------------------------------------------- */
+
+  const whatsappMessage =
+
+`🔥 4X SHOP — NEW ORDER
+
+👤 Customer:
+${customerName}
+
+📱 WhatsApp:
+${phone}
+
+📂 Category:
+${categoryNames[selectedProduct.category]}
+
+🎨 Design:
+${selectedProduct.name}
+
+💰 Price:
+৳${selectedProduct.price}
+
+✍️ Logo Name:
+${logoName}
+
+🎨 Logo Details:
+${logoDetails}
+
+📝 Extra:
+${extraDetails || "None"}`;
+
+
+  const whatsappURL =
+    "https://wa.me/" +
+    SELLER_WHATSAPP +
+    "?text=" +
+    encodeURIComponent(
+      whatsappMessage
+    );
+
+
+  alert(
+    "✅ অর্ডার পাঠানোর অনুরোধ করা হয়েছে!\n\n" +
+    "এখন WhatsApp খুলবে।"
+  );
+
+
+  window.open(
+    whatsappURL,
+    "_blank"
+  );
+
+
+  closeOrder();
+
+
+  /* CLEAR FORM */
+
+  document.getElementById("customerName").value="";
+  document.getElementById("phone").value="";
+  document.getElementById("logoName").value="";
+  document.getElementById("logoDetails").value="";
+  document.getElementById("extraDetails").value="";
+
+}
+
+
+/* =====================================================
+   ADMIN
+===================================================== */
+
+function openAdmin(){
+
+  document
+    .getElementById("adminModal")
+    .style.display =
+      "block";
+
+}
+
+
+function closeAdmin(){
+
+  document
+    .getElementById("adminModal")
+    .style.display =
+      "none";
+
+}
+
+
+function adminLogin(){
+
+  const password =
+    document
+      .getElementById("adminPassword")
+      .value;
+
+  if(password !== ADMIN_PASSWORD){
+
+    alert("❌ Wrong password!");
+    return;
+
+  }
+
+  document
+    .getElementById("adminLoginBox")
+    .classList.add("hidden");
+
+  document
+    .getElementById("adminPanel")
+    .classList.remove("hidden");
+
+  renderAdmin();
+
+}
+
+
+/* =====================================================
+   ADMIN LIST
+===================================================== */
+
+function renderAdmin(){
+
+  const box =
+    document.getElementById("adminList");
+
+  box.innerHTML =
+    products.map((p,index) => `
+
+      <div class="admin-item">
+
+        <b>${index+1}. ${escapeHTML(p.name)}</b>
+
+        <input
+          id="name-${p.id}"
+          value="${escapeAttribute(p.name)}"
+          placeholder="Design Name"
+        >
+
+        <input
+          id="price-${p.id}"
+          type="number"
+          value="${p.price}"
+          placeholder="Price"
+        >
+
+        <input
+          id="image-${p.id}"
+          value="${escapeAttribute(p.image)}"
+          placeholder="Image URL"
+        >
+
+        <select id="category-${p.id}">
+
+          ${makeCategoryOptions(p.category)}
+
+        </select>
+
+        <div class="admin-actions">
+
+          <button
+            class="save-btn"
+            onclick="saveAdminChanges(${p.id})">
+
+            Save
+
+          </button>
+
+          <button
+            class="delete-btn"
+            onclick="deleteDesign(${p.id})">
+
+            Delete
+
+          </button>
+
+        </div>
+
+      </div>
+
+    `).join("");
+
+}
+
+
+/* =====================================================
+   CATEGORY OPTIONS
+===================================================== */
+
+function makeCategoryOptions(selected){
+
+  return Object.keys(categoryNames)
+
+    .map(key => `
+
+      <option
+        value="${key}"
+        ${key === selected ? "selected":""}>
+
+        ${categoryNames[key]}
+
+      </option>
+
+    `).join("");
+
+}
+
+
+/* =====================================================
+   SAVE ADMIN CHANGES
+===================================================== */
+
+function saveAdminChanges(id){
+
+  const product =
+    products.find(
+      p => p.id === id
+    );
+
+  if(!product) return;
+
+
+  product.name =
+    document
+      .getElementById("name-"+id)
+      .value.trim();
+
+
+  product.price =
+    Number(
+      document
+        .getElementById("price-"+id)
+        .value
+    );
+
+
+  product.image =
+    document
+      .getElementById("image-"+id)
+      .value.trim();
+
+
+  product.category =
+    document
+      .getElementById("category-"+id)
+      .value;
+
+
+  saveProducts();
+
+  renderAdmin();
+
+  alert("✅ Design updated!");
+
+}
+
+
+/* =====================================================
+   DELETE DESIGN
+===================================================== */
+
+function deleteDesign(id){
+
+  if(
+    !confirm(
+      "এই design delete করতে চান?"
+    )
+  ){
+
+    return;
+
+  }
+
+
+  products =
+    products.filter(
+      p => p.id !== id
+    );
+
+
+  saveProducts();
+
+  renderAdmin();
+
+}
+
+
+/* =====================================================
+   ADD DESIGN
+===================================================== */
+
+function addDesign(){
+
+  const name =
+    document
+      .getElementById("newName")
+      .value.trim();
+
+  const price =
+    Number(
+      document
+        .getElementById("newPrice")
+        .value
+    );
+
+  const image =
+    document
+      .getElementById("newImage")
+      .value.trim();
+
+  const category =
+    document
+      .getElementById("newCategory")
+      .value;
+
+
+  if(!name){
+
+    alert("Design name দিন।");
+    return;
+
+  }
+
+  if(!price){
+
+    alert("Price দিন।");
+    return;
+
+  }
+
+  if(!image){
+
+    alert("Image URL দিন।");
+    return;
+
+  }
+
+
+  products.push({
+
+    id:Date.now(),
+
+    name:name,
+
+    price:price,
+
+    image:image,
+
+    category:category
+
+  });
+
+
+  saveProducts();
+
+  renderAdmin();
+
+
+  document
+    .getElementById("newName")
+    .value="";
+
+  document
+    .getElementById("newPrice")
+    .value="";
+
+  document
+    .getElementById("newImage")
+    .value="";
+
+
+  alert("✅ New design added!");
+
+}
+
+
+/* =====================================================
+   SECURITY / HTML HELPERS
+===================================================== */
+
+function escapeHTML(text){
+
+  return String(text)
+
+    .replace(/&/g,"&amp;")
+
+    .replace(/</g,"&lt;")
+
+    .replace(/>/g,"&gt;")
+
+    .replace(/"/g,"&quot;")
+
+    .replace(/'/g,"&#039;");
+
+}
+
+
+function escapeAttribute(text){
+
+  return escapeHTML(text);
+
+}
+
+
+/* =====================================================
+   START
+===================================================== */
+
+loadProducts();
+
+</script>
+
+</body>
+        </html>
